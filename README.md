@@ -1,6 +1,9 @@
-# bs4
+# HUST OJ bs4 template
 HUSTOJ에서 사용하는 template 입니다.
 
+현재 sungil-oj 에서 사용중에 있습니다.
+
+사이트 : https://code.juwon.info
 
 이 템플릿을 사용할 경우 bs4admin 디렉토리의 관리자 파일로 연결됩니다.
 

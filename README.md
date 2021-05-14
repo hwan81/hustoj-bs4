@@ -7,10 +7,10 @@ HUSTOJ에서 사용하는 template 입니다.
 
 이 템플릿을 사용할 경우 bs4admin 디렉토리의 관리자 파일로 연결됩니다.
 
-oj-header.php에서 <pre>$OJ_ADMIN = "bs4admin"</pre>을 수정하시면 됩니다. (기본 디렉토리는 admin)
+oj-header.php에서 <b><pre>$OJ_ADMIN = "bs4admin"</pre></b>을 수정하시면 됩니다. (기본 디렉토리는 admin)
 
 템플릿 navbar의 기본 색상은
-oj-header.php에서 <pre>$OJ_MAIN_COLOR = "info"; //info success danger warning primary</pre>을 수정하시면 됩니다. (기본 디렉토리는 admin)
+oj-header.php에서 <b><pre>$OJ_MAIN_COLOR = "info"; //info success danger warning primary</pre></b>을 수정하시면 됩니다. (기본 디렉토리는 admin)
 
 본 스킨은 교육용+비상업적인 용도로만 사용가능하며 GPL 2.0 라이선스를 따릅니다.
 

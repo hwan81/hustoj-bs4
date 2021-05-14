@@ -9,6 +9,9 @@ HUSTOJ에서 사용하는 template 입니다.
 
 oj-header.php에서 <pre>$OJ_ADMIN = "bs4admin"</pre>을 수정하시면 됩니다. (기본 디렉토리는 admin)
 
+템플릿 navbar의 기본 색상은
+oj-header.php에서 <pre>$OJ_MAIN_COLOR = "info"; //info success danger warning primary</pre>을 수정하시면 됩니다. (기본 디렉토리는 admin)
+
 본 스킨은 교육용+비상업적인 용도로만 사용가능하며 GPL 2.0 라이선스를 따릅니다.
 
 

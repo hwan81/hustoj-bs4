@@ -13,7 +13,7 @@ oj-header.php에서 <pre>$OJ_ADMIN = "bs4admin"</pre>을 수정하시면 됩니�
 
 
 
-# 이 스킨은 hustoj를 원본소스를 수정하여 제작되었습니다.
+# 이 스킨은 hustoj의 원본소스를 수정하여 제작되었습니다.
 - 수정 : Leejunghwan(bigdipper81@nate.com)
 - 주원아 자연은 원래 느린거란다.
 

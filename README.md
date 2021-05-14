@@ -41,6 +41,7 @@ oj-header.php에서 <b><pre>$OJ_MAIN_COLOR = "info"; //info success danger warni
 - 에디터를 변경하였습니다. - 이미지 복붙 가능(필드타입 변경필요)
 - 시스템 정보를 출력하도록 하였습니다.
 - 랭킹순위를 표시합니다.
+- 공지사항 페이지를 제작하였습니다.
 
 ## 사용된 라이브러리
 - chart.js

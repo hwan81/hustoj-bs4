@@ -60,3 +60,5 @@ oj-header.php에서 <b><pre>$OJ_MAIN_COLOR = "info"; //info success danger warni
 - 이주원(기차, 버스, 비행기, 고기를 좋아함)
 - newnnewer (주종족 저그)
 - hebelle (멋쟁이레이서)
+
+#### 사용되었던 불필요한 파일들은 삭제되지 않았습니다... 

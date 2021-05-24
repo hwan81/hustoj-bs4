@@ -58,5 +58,5 @@ oj-header.php에서 <b><pre>$OJ_MAIN_COLOR = "info"; //info success danger warni
 
 ### 도움을 주신 분들
 - 이주원(기차, 버스, 비행기, 고기를 좋아함)
-- Moon (주종족 저그)
-- hebelle (투자귀재)
+- newnnewer (주종족 저그)
+- hebelle (멋쟁이레이서)

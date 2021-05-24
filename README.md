@@ -20,6 +20,12 @@ oj-header.php에서 <b><pre>$OJ_MAIN_COLOR = "info"; //info success danger warni
 - 수정 : Leejunghwan(bigdipper81@nate.com)
 - 주원아 자연은 원래 느린거란다.
 
+# 설치방법 안내
+- hustoj > tempplate 디렉토리에 bs4/디렉토리를 복사
+- hustoj 디렉토리에 core 파일(problemset.php, notice.php) 복사 <b>반드시 백업하세요</b>
+- hustoj 디렉토리에 bs4admin/ 디렉토리 복사
+- bs4admin/msg.txt 파일의 chomd 707 
+
 ## 변경된 기능
 - 상단 헤더부분을 oj-header.php로 변경 통합
 - 충격적이었던 problemset.php의 검색기능 대폭수정(코어변경 필요)

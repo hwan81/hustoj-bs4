@@ -70,12 +70,11 @@
                     <?php
                     if ( $row[ 'spj' ] )echo "&nbsp;&nbsp;<span class=red>Special Judge</span>";
                     if($pr_flag){
-                        echo "<a class='btn btn-outline-primary btn-lg btn-block mb-2' href='submitpage.php?id=$id' role='button'>정답을 제출합니다</a>";
+                        echo "<a class='btn btn-outline-primary btn-lg btn-block mb-2 large' href='submitpage.php?id=$id' role='button'><i class=' far fa-edit'></i> 정답을 제출합니다</a>";
                     }else{
-                        echo "<a class='btn btn-outline-danger btn-lg btn-block mb-2 ' href='submitpage.php?cid=$cid&pid=$pid&langmask=$langmask' role='button'>정답을 제출합니다</a>";
-                        echo "<a class='btn btn-primary btn-sm' role='button' href='contest.php?cid=$cid'>$MSG_PROBLEM$MSG_LIST</a>";
+                        echo "<a class='btn btn-outline-danger btn-lg btn-block mb-2 ' href='submitpage.php?cid=$cid&pid=$pid&langmask=$langmask' role='button'><i class='far fa-edit'></i> 정답을 제출합니다</a>";
+                        echo "<a class='btn btn-outline-primary btn-block btn-sm' role='button' href='contest.php?cid=$cid'>$MSG_PROBLEM$MSG_LIST</a>";
                     }
-
                     echo "<!--StartMarkForVirtualJudge-->";
                     ?>
                 </div>

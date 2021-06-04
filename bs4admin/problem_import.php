@@ -1,4 +1,11 @@
-<?php function writable($path){
+<?php
+require_once("admin-header.php");
+if (!(isset($_SESSION[$OJ_NAME.'_'.'administrator']) || isset($_SESSION[$OJ_NAME.'_'.'problem_editor']))) {
+    echo "<a href='../loginpage.php'>Please Login First!</a>";
+    exit(1);
+}
+
+function writable($path){
 	$ret=false;
 	$fp=fopen($path."/testifwritable.tst","w");
 	$ret=!($fp===false);
@@ -6,11 +13,7 @@
 	unlink($path."/testifwritable.tst");
 	return $ret;
 }
-require_once("admin-header.php");
-if (!(isset($_SESSION[$OJ_NAME.'_'.'administrator']) || isset($_SESSION[$OJ_NAME.'_'.'problem_editor']))) {
-  echo "<a href='../loginpage.php'>Please Login First!</a>";
-  exit(1);
-}
+
    $maxfile=min(ini_get("upload_max_filesize"),ini_get("post_max_size"));
 
 ?>

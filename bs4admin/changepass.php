@@ -9,7 +9,7 @@ if(isset($OJ_LANG)){
   require_once("../lang/$OJ_LANG.php");
 }
 ?>
-<?php require_once("../include/set_post_key.php");?>
+
 
 
 
@@ -39,8 +39,8 @@ if(isset($_POST['do'])){
   	echo "<center><h4 class='text-danger'>There is No such User ".$_POST['user_id']."! or User ".$_POST['user_id']." is administrator!</h4></center>";
 }
 ?>
-
 <form action=changepass.php method=post class="">
+
     <div class="offset-md-3 col-md-6 card">
         <div class="card-body">
             <div class="form-group">
@@ -59,6 +59,7 @@ if(isset($_POST['do'])){
                 <div class=""><input name="passwd" class="form-control" placeholder="<?php echo $MSG_PASSWORD."*"?>" type="password"  autocomplete="off" required ></div>
             </div>
             <div class="mt-5 row">
+                <?php require_once("../include/set_post_key.php");?>
                 <div class="col-md-6"><button name="submit" type="reset" class="btn btn-outline-dark"><?php echo $MSG_RESET?></button></div>
                 <div class="text-right col-md-6"> <button name="do" type="hidden" value="do" class="btn btn-primary" ><?php echo $MSG_SAVE?></button></div>
             </div>

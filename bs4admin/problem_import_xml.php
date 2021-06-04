@@ -117,13 +117,14 @@ function import_fps($tempfile){
 		$hint = getValue ( $searchNode, 'hint' );
 		$source = getValue ( $searchNode, 'source' );
 		
-		
+
 		$spjcode = getValue ( $searchNode, 'spj' );
 		$spj = trim($spjcode)?1:0;
 		if(!hasProblem($title )){
 			$pid=addproblem ( $title, $time_limit, $memory_limit, $description, $input, $output, $sample_input, $sample_output, $hint, $source, $spj, $OJ_DATA );
 			if($spid==0) $spid=$pid;
 			$basedir = "$OJ_DATA/$pid";
+
 			mkdir ( $basedir );
 			if(strlen($sample_input)) mkdata($pid,"sample.in",$sample_input,$OJ_DATA);
 			if(strlen($sample_output)) mkdata($pid,"sample.out",$sample_output,$OJ_DATA);
@@ -268,6 +269,7 @@ if ($_FILES ["fps"] ["error"] > 0) {
 	  unlink ( $_FILES ["fps"] ["tmp_name"] );
 	}else{
 		import_fps($tempfile);
+
 	}
 //	echo "Upload: " . $_FILES ["fps"] ["name"] . "<br />";
 //	echo "Type: " . $_FILES ["fps"] ["type"] . "<br />";
@@ -280,3 +282,4 @@ if ($_FILES ["fps"] ["error"] > 0) {
 }
 ?>
 
+<?php require("admin-footer.php"); ?>

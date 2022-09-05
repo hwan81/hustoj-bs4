@@ -6,16 +6,12 @@ $MSG_Running = "대회중"
     <?php require_once "template/$OJ_TEMPLATE/contest-tab.php"; ?>
 
 
+    <div class="" id="problems" >
 
-
-    <div class="tab-pane fade show active" id="problems" role="tabpanel" aria-labelledby="profile-tab">
-        <div class="btn-group">
-
-        </div>
         <div class="table table-responsive">
-            <table id='problemset' class='table table-bordered table-hover' >
+            <table id='problemset' class='table table-bordered table-hover text-center' >
                 <thead>
-                <tr align=center class='toprow'>
+                <tr class='toprow '>
                     <td></td>
                     <td style="cursor:hand" onclick="sortTable('problemset', 1, 'int');" ><?php echo $MSG_PROBLEM_ID?></td>
                     <td><?php echo $MSG_TITLE?></td>
@@ -24,22 +20,37 @@ $MSG_Running = "대회중"
                     <td style="cursor:hand" onclick="sortTable('problemset', 5, 'int');"><?php echo $MSG_SUBMIT?></td>
                 </tr>
                 </thead>
-                <tbody align='center'>
+                <tbody >
+
                 <?php
                 $cnt=0;
                 foreach ($view_problemset as $row) {
-                    if ($cnt)
-                        echo "<tr class='oddrow'>";
-                    else
-                        echo "<tr class='evenrow'>";
+                    ?>
+                        <tr>
+                            <td><?=$row[0]?></td>
+                            <td><?=$row[1]?></td>
+                            <td class="text-nowrap text-left"><?=$row[2]?></td>
+                            <td><?=$row[3]?></td>
+                            <td><?=$row[4]?></td>
+                            <td><?=$row[5]?></td>
+                        </tr>
+                    <?php
 
-                    foreach ($row as $table_cell) {
-                        echo "<td>";
-                        echo "\t".$table_cell;
-                        echo "</td>";
-                    }
-                    echo "</tr>";
-                    $cnt=1-$cnt;
+//
+//                    if ($cnt)
+//                        echo "<tr class='oddrow'>";
+//                    else
+//                        echo "<tr class='evenrow'>";
+//
+//                    foreach ($row as $table_cell) {
+//                        echo "<td>";
+//                        print_r($row);
+//                        echo "\t".$table_cell;
+//                        echo "</td>";
+//                    }
+//                    echo "</tr>";
+//                    $cnt=1-$cnt;
+
                 }
                 ?>
                 </tbody>
@@ -90,5 +101,5 @@ $MSG_Running = "대회중"
     $(this).tab('show')
     });
 </script>
-</body>
-</html>
+
+<?php include("template/$OJ_TEMPLATE/oj-footer.php");?>

@@ -6,24 +6,20 @@
 		<!-- Main component for a primary marketing message or call to action -->
 		<div class="">
 
-
-
-			<br>
 			<?php
 				$rank = 1;
 			?>
-			<center>
-				<a href="contestrank.xls.php?cid=<?php echo $cid?>" >Download</a>
-				<h4><?php if (isset($locked_msg)) echo $locked_msg;?></h4>
-				<?php if ($OJ_MEMCACHE) {?>
-					<a href="contestrank2.php?cid=<?php echo $cid?>" >Replay</a>
-				<?php }?>
-			</center>
-
-			<div style="overflow: auto">
-				<table id=rank>
+		    <div class="alert alert-info">
+                <a href="contestrank.xls.php?cid=<?php echo $cid?>" >Download</a>
+                <h4><?php if (isset($locked_msg)) echo $locked_msg;?></h4>
+                <?php if ($OJ_MEMCACHE) {?>
+                    <a href="contestrank2.php?cid=<?php echo $cid?>" >Replay</a>
+                <?php }?>
+            </div>
+			<div class="table-responsive">
+				<table id="rank" class="table table-bordered">
 					<thead>
-						<tr class=toprow align=center>
+						<tr class="toprow text-center" >
 							<td class="{sorter:'false'}" width=5%><?php echo $MSG_STANDING?></td>
 							<td width=10%><?php echo $MSG_USER?></td>
 							<td width=10%><?php echo $MSG_NICK?></td>
@@ -214,20 +210,20 @@
 							cell.innerHTML = "Winner";
 
 							//cell.style.cssText="background-color:gold;color:red";
-							cell.className = "badge btn-warning";
+							cell.className = "bg-primary text-white";
 						}
 
 						if (r>1 && r<=total*.05+1)
-							cell.className = "badge btn-warning";
+							cell.className = "bg-primary text-white";
 
 						if (r>total*.05+1 && r<=total*.20+1)
 							cell.className = "badge";
 
 						if(r>total*.20+1 && r<=total*.45+1)
-							cell.className = "badge btn-danger";
+							cell.className = "bg-danger text-white";
 
 						if(r>total*.45+1 && ac>0)
-							cell.className = "badge badge-info";
+							cell.className = "bg-info";
 					}
 				}
 			}
@@ -267,16 +263,4 @@
 		clock();
 	</script>
 
-	<style>
-		.well {
-			background-image:none;
-			padding:1px;
-		}
-
-		td {
-			white-space:nowrap;
-		}
-	</style>
-
-</body>
-</html>
+<?php include("template/$OJ_TEMPLATE/oj-footer.php");?>

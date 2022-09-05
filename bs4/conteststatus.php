@@ -7,59 +7,6 @@ $MSG_Running = "대회중"
 
   <div class="">
 
-  <?php
-  if (isset($_GET['cid'])) {
-    $cid = intval($_GET['cid']);
-    $view_cid = $cid;
-    //print $cid;
-
-    //check contest valid
-    $sql = "SELECT * FROM `contest` WHERE `contest_id`=?";
-    $result = pdo_query($sql,$cid);
-
-    $rows_cnt = count($result);
-    $contest_ok = true;
-    $password = "";
-
-    if (isset($_POST['password']))
-      $password = $_POST['password'];
-
-    if (get_magic_quotes_gpc()) {
-      $password = stripslashes($password);
-    }
-
-    if ($rows_cnt==0) {
-      $view_title = "종료되었습니다";
-    }
-    else{
-      $row = $result[0];
-      $view_private = $row['private'];
-
-      if ($password!="" && $password==$row['password'])
-        $_SESSION[$OJ_NAME.'_'.'c'.$cid] = true;
-
-      if ($row['private'] && !isset($_SESSION[$OJ_NAME.'_'.'c'.$cid]))
-        $contest_ok = false;
-
-      if($row['defunct']=='Y')
-        $contest_ok = false;
-
-      if (isset($_SESSION[$OJ_NAME.'_'.'administrator']))
-        $contest_ok = true;
-
-      $now = time();
-      $start_time = strtotime($row['start_time']);
-      $end_time = strtotime($row['end_time']);
-      $view_description = $row['description'];
-      $view_title = $row['title'];
-      $view_start_time = $row['start_time'];
-      $view_end_time = $row['end_time'];
-    }
-  }
-  ?>
-
-
-
     <div align=center class="input-append">
       <form id=simform class=form-inline action="status.php" method="get">
        <?php echo $MSG_PROBLEM_ID?>
@@ -154,10 +101,10 @@ $MSG_Running = "대회중"
     </div>
     <br>
 
-    <div id=center>
-      <table id=result-tab class="table table-striped content-box-header" align=center width=80%>
-        <thead>
-          <tr class='toprow'>
+    <div class="table-responsive" id=center>
+      <table id=result-tab class="table table-bordered content-box-header text-center" >
+        <thead class="">
+          <tr class='toprow table-primary'>
             <td class="text-center">
               <?php echo $MSG_RUNID?>
             </td>
@@ -186,9 +133,9 @@ $MSG_Running = "대회중"
               <?php echo $MSG_SUBMIT_TIME?>
             </td>
             <?php if (isset($_SESSION[$OJ_NAME.'_'.'administrator'])) {
-              echo "<th class='text-center'>";
+              echo "<td class='text-center'>";
                 echo $MSG_JUDGER;
-              echo "</th>";
+              echo "</td>";
             } ?>
           </tr>
         </thead>
@@ -223,24 +170,22 @@ $MSG_Running = "대회중"
       </table>
     </div>
 
-    <div align=center id=center>
-      <nav id="page" class="center">
-        <small>
-        <ul class="pagination">
+
+    <div id="page" class="text-center d-flex justify-content-center">
+        <ul class="pagination pagination-sm ">
           <?php
-          echo "<li class='page-item'> <a href=status.php?".$str2.">&lt;&lt; Top</a></li>";
+          echo "<li class='page-item'> <a class='page-link' href=status.php?".$str2.">&lt;&lt; Top</a></li>";
           if (isset($_GET['prevtop']))
-            echo "<li class='page-item'> <a href=status.php?".$str2."&top=".intval($_GET['prevtop']).">&lt Prev</a></li>";
+            echo "<li class='page-item'> <a class='page-link' href=status.php?".$str2."&top=".intval($_GET['prevtop']).">&lt Prev</a></li>";
           else
-            echo "<li class='page-item'> <a href=status.php?".$str2."&top=".($top+50).">&lt Prev</a></li>";
-          echo "<li class='page-item'> <a href=status.php?".$str2."&top=".$bottom."&prevtop=$top>Next &gt;</a></li>";
+            echo "<li class='page-item'> <a class='page-link' href=status.php?".$str2."&top=".($top+50).">&lt Prev</a></li>";
+          echo "<li class='page-item'> <a class='page-link' href=status.php?".$str2."&top=".$bottom."&prevtop=$top>Next &gt;</a></li>";
           ?>
         </ul>
-        </small>
-      </nav>
     </div>
 
-  </div>
+
+
 
 </div>
 
@@ -292,6 +237,5 @@ $MSG_Running = "대회중"
   clock();
 </script>
 
-</body>
-
-</html>
+</div>
+<?php include("template/$OJ_TEMPLATE/oj-footer.php");?>

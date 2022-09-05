@@ -9,34 +9,15 @@ if(file_exists("/{$OJ_TEMPLATE}admin/msg.txt")){
 
 <script>
 $(document).ready(function(){
-	<?php if($view_marquee_msg!="") { ?> 
-  	var msg="<marquee style='margin-top:10px' direction='left' scrollamount=3 scrolldelay=50 onMouseOver='this.stop()'" +
-        " onMouseOut='this.start()' class=toprow>"+"<?php echo json_encode($view_marquee_msg); ?>"+"</marquee>";
-  	$(".container").prepend(msg);
-  <?php } ?>
   
   $("form").append("<div id='csrf' />");
   $("#csrf").load("<?php echo $path_fix?>csrf.php");
-  
-  <?php if(isset($OJ_BEIAN)&&$OJ_BEIAN){ ?>
-         $("body").append("<br><center><a href='http://beian.miit.gov.cn/' target='_blank'><?php echo $OJ_BEIAN?></a></center>");
-  <?php } ?>
 
-	
   <?php 
 	if(isset($_SESSION[$OJ_NAME."_administrator"])) echo "admin_mod();";
   ?>
 });
 
-$(".hint pre").each(function(){
-	var plus="<span class='glyphicon glyphicon-plus'>Click</span>";
-	var content=$(this);
-	$(this).before(plus);
-	$(this).prev().click(function(){
-		content.toggle();
-	});
-	
-});
 
   //console.log("If you want to change the appearance of the web pages, make a copy of bs3 under template directory.\nRename it to whatever you like, and change the $OJ_TEMPLATE value in db_info.inc.php\nAfter that modify files under your own directory .\n");
   //console.log("To enable mathjax in hustoj, check line 15 in /home/judge/src/web/template/bs3/js.php");

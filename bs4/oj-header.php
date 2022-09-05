@@ -14,7 +14,6 @@ if (file_exists("../{$OJ_ADMIN}/msg.txt"))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="<?=$OJ_NAME?>">
-    <meta name="google-site-verification" content="SsihZnr3h6DuM0S6GvRf_JEzoUYuDxeST0gOKmrPHAY" />
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 

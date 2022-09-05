@@ -8,7 +8,7 @@
 </script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <?php } ?>
-<div class="container p-0 mt-3">
+<div class="container mt-3">
     <div class="container-fluid p-0">
         <div class="card border-0 mb-3 ">
             <div class="card-header border-0  text-center">
@@ -46,8 +46,7 @@
 
                                 echo "<a class='btn btn-success btn-sm' role='button' href=status.php?problem_id=".$row['problem_id']."&jresult=4>
                                     <span class=\"d-none d-md-inline\">$MSG_SOVLED </span>
-                                    <span class=\"d-inline d-sm-none small\">P</span>
-                                    ".$row['accepted']."</a>";
+                                    <span class=\"d-inline d-sm-none small\">P</span>".$row['accepted']."</a>";
                                 echo "<a class='btn btn-info btn-sm' role='button' href=status.php?problem_id=".$row['problem_id'].">
                                     <span class=\"d-none d-md-inline\">$MSG_SUBMIT_NUM </span>
                                     <span class=\"d-inline d-sm-none small\">S</span>".$row['submit']."</a>";

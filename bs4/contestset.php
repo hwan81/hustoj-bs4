@@ -1,65 +1,89 @@
 <?php include("template/$OJ_TEMPLATE/oj-header.php");?>
     <div class="container">
+        <h3><?php echo $MSG_SERVER_TIME?> <span id=nowdate></span></h3>
+        <div class="table-responsive">
+            <table class='table table-bordered table-hover'>
+                <thead>
+                    <tr class="table-danger text-center">
+                        <td><?php echo $MSG_CONTEST_ID?></td>
+                        <td><?php echo $MSG_CONTEST_NAME?></td>
+<!--                        <td>--><?php //echo $MSG_CONTEST_STATUS?><!--</td>-->
+                        <td><?php echo $MSG_CONTEST_OPEN?></td>
+                        <td><?php echo $MSG_CONTEST_CREATOR?></td>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach($view_contest as $row){
+                    $i=0;
+                    ?>
+                        <tr class="text-center ">
+                            <td class="align-middle"><?=$row[0]?></td>
+                            <td class="text-left">
+                                <?=$row[1]?><br>
+                                <span class="badge badge-info">상태</span>
+                                <span class="font-weight-light">
+                                    <?=$row[2]?>
+                                </span>
 
-      <center><h3><?php echo $MSG_SERVER_TIME?> <span id=nowdate></span></h3></center><br>
+                            </td>
 
-      <table class='table table-bordered table-hover'>
-        <thead>
-          <tr class="table-danger" align=center>
-            <td><?php echo $MSG_CONTEST_ID?></td>
-            <td><?php echo $MSG_CONTEST_NAME?></td>
-            <td><?php echo $MSG_CONTEST_STATUS?></td>
-            <td><?php echo $MSG_CONTEST_OPEN?></td>
-            <td><?php echo $MSG_CONTEST_CREATOR?></td>
-          </tr>
-        </thead>
-        <tbody align='center'>
-          <?php
-          foreach($view_contest as $row){
-            echo "<tr>";
-            $i=0;
-            foreach($row as $table_cell){
-              if($i==2) echo "<td class=text-left>";
-              else echo "<td>";
-              echo "\t".$table_cell;
-              echo "</td>";
-              $i++;
-            }
-            echo "</tr>";
-          }
-          ?>
-        </tbody>
-      </table>
-        <table class="" >
-            <tr align='center'>
-                <td>
-                    <form class=form-inline method=post action=contest.php>
-                        <input class="form-control" name=keyword value="<?php if(isset($_POST['keyword'])) echo htmlentities($_POST['keyword'],ENT_QUOTES,"UTF-8")?>" placeholder="<?php echo $MSG_CONTEST_NAME?>">
-                        <button class="form-control" type=submit><?php echo $MSG_SEARCH?></button>
-                    </form>
-                </td>
-            </tr>
-        </table>
+                            <td class="align-middle">
+                                <?=$row[4]?><?=$row[5]?></td>
+                            <td class="align-middle"><?=$row[6]?></td>
+                        </tr>
+                <?php
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
 
-      <div class="center">
+        <div class="row">
+            <div class="col-md-4">
+                <table class="" >
+                    <tr>
+                        <td>
+                            <form class=form-inline method=post action=contest.php>
+                                <div class="input-group">
+                                    <input class="form-control" name=keyword value="<?php if(isset($_POST['keyword'])) echo htmlentities($_POST['keyword'],ENT_QUOTES,"UTF-8")?>" placeholder="<?php echo $MSG_CONTEST_NAME?>">
+                                    <button class="btn btn-primary input-group-btn" type=submit><?php echo $MSG_SEARCH?></button>
+                                </div>
 
-        <ul class="pagination pagination-sm">
-          <li class="page-item"><a class="page-link" href="contest.php?page=1">&lt;&lt;</a></li>
-          <?php
-          if(!isset($page)) $page=1;
-          $page=intval($page);
-          $section=8;
-          $start=$page>$section?$page-$section:1;
-          $end=$page+$section>$view_total_page?$view_total_page:$page+$section;
-          for ($i=$start;$i<=$end;$i++){
-            echo "<li class='".($page==$i?" active ":"")."page-item'><a class='page-link' title='go to page' href='contest.php?page=".$i.(isset($_GET['my'])?"&my":"")."'>".$i."</a></li>";
-          }
-          ?>
-          <li class="page-item"><a class="page-link" href="contest.php?page=<?php echo $view_total_page?>">&gt;&gt;</a></li>
-        </ul>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-8 text-end ">
+                <div class="d-flex justify-content-md-end">
+                    <ul class="pagination pagination-sm">
+                        <li class="page-item"><a class="page-link" href="contest.php?page=1">&lt;&lt;</a></li>
+                        <?php
+                        if(!isset($page)) $page=1;
+                        $page=intval($page);
+                        $section=8;
+                        $start=$page>$section?$page-$section:1;
+                        $end=$page+$section>$view_total_page?$view_total_page:$page+$section;
+                        for ($i=$start;$i<=$end;$i++){
+                            echo "<li class='".($page==$i?" active ":"")."page-item'><a class='page-link' title='go to page' href='contest.php?page=".$i.(isset($_GET['my'])?"&my":"")."'>".$i."</a></li>";
+                        }
+                        ?>
+                        <li class="page-item"><a class="page-link" href="contest.php?page=<?php echo $view_total_page?>">&gt;&gt;</a></li>
+                    </ul>
+                </div>
 
-      </div>
-      </center>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
 
     </div>
   </div> <!-- /container -->

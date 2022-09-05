@@ -10,7 +10,7 @@
           <div class='card-body content'>
             <?php
                 $view_category = str_replace("label-","btn-sm btn-",$view_category);
-                $view_category = str_replace("label","btn",$view_category);
+                $view_category = str_replace("label","btn border-secondary",$view_category);
                 echo $view_category;
             ?>
           </div>

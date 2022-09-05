@@ -27,8 +27,9 @@ if (file_exists("../{$OJ_ADMIN}/msg.txt"))
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/js/fontawesome.min.js" integrity="sha256-xLAK3iA6CJoaC89O/DhonpICvf5QmdWhcPJyJDOywJM=" crossorigin="anonymous"></script>
+<script src="<?="template/$OJ_TEMPLATE/script/myScript.js"?>"></script>
 <?php include("template/$OJ_TEMPLATE/nav.php");?>
-<div class="container content-main mb-5">
+<div class="container content-main mb-5 p-0">
     <?php
     $view_marquee_msg = trim($view_marquee_msg);
     $check_view = str_replace(" ","",$view_marquee_msg);

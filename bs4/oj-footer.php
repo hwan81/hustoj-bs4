@@ -5,13 +5,13 @@
 </div>
 
 </div>  <!--oj-header container-->
-<div id="main-footer" class="p-5 bg-secondary text-light">
+<div id="main-footer" class="p-5 bg-light border-top text-dark">
     <div class="container text-center">
         <?=$MSG_HELP_HUSTOJ?><br>
-        GPLv2 licensed by <a class="text-light" href='https://github.com/zhblue/hustoj' >HUSTOJ</a> <script> document.write((new Date()).getFullYear())</script><br>
-        <button type="button" class="btn btn-sm border-0 btn-secondary text-light  btn-outline-dark" data-toggle="modal" data-target="#exampleModal">
-            Skin  & library info
-        </button>
+        GPLv2 licensed by <a class="text-dark" href='https://github.com/zhblue/hustoj' >HUSTOJ</a> <script> document.write((new Date()).getFullYear())</script><br>
+        <a href="# " data-toggle="modal" data-target="#exampleModal">
+            Skin  & library information
+        </a>
     </div>
 
 </div>
@@ -22,7 +22,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable  modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable  modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Skin info</h5>
@@ -123,7 +123,7 @@
         fixBottom();
     });
     function fixBottom(){
-        var h = $(window).height() - $(".content-main").offset().top -  $("#main-footer").height() - parseInt($("#main-footer").css("padding")) * 2 - parseInt($("#main-footer").css("margin")) * 2 - parseInt($(".content-main").css("margin-bottom"))  ;
+        var h = $(window).height() - $(".content-main").offset().top -  $("#main-footer").height() - parseInt($("#main-footer").css("padding-bottom")) - parseInt($("#main-footer").css("padding-top")) - parseInt($("#main-footer").css("margin")) * 2 - parseInt($(".content-main").css("margin-bottom")) - 1  ;
         $(".content-main").css("min-height", h+"px");
     }
 </script>

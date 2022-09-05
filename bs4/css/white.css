@@ -132,3 +132,7 @@ h3.pagenav div.active{
    text-align: center;
    transition: 0.5s;
   }
+
+.overflow-x{
+   overflow-x: scroll;
+}

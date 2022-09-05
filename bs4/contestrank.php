@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<link rel="icon" href="../../favicon.ico">
-
-	<title>
-		<?php echo $OJ_NAME?>
-	</title>  
-
-	<?php include("template/$OJ_TEMPLATE/css.php");?>
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-	<script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"></script>
-	<script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-	<![endif]-->
+<?php include("template/$OJ_TEMPLATE/oj-header.php");?>
 
 	<?php
 	function formatTimeLength($length) {
@@ -90,14 +71,10 @@
 		return $result;
 	}
 	?>
-	
-</head>
 
-<body>
 	<div class="container">
-		<?php include("template/$OJ_TEMPLATE/nav.php");?>	    
-		<!-- Main component for a primary marketing message or call to action -->
-		<div class="jumbotron">
+        <?php require_once "template/$OJ_TEMPLATE/contest-tab.php"; ?>
+		<div class="">
 
 			<?php
 			if (isset($_GET['cid'])) {
@@ -150,97 +127,28 @@
 			}
 			?>
 
-			<?php if (isset($_GET['cid'])) {?>
-			<center>
-			<div>
-				<h3><?php echo $MSG_CONTEST_ID?> : <?php echo $view_cid?> - <?php echo $view_title ?></h3>
-				<p>
-					<?php echo $view_description?>
-				</p>
-				<br>
-				<?php echo $MSG_SERVER_TIME?> : <span id=nowdate > <?php echo date("Y-m-d H:i:s")?></span>
-				<br>
-				
-				<?php if (isset($OJ_RANK_LOCK_PERCENT)&&$OJ_RANK_LOCK_PERCENT!=0) { ?>
-				Lock Board Time: <?php echo date("Y-m-d H:i:s", $view_lock_time) ?><br/>
-				<?php } ?>
-				
-				<?php if ($now>$end_time) {
-					echo "<span class=text-muted>$MSG_Ended</span>";
-				}
-				else if ($now<$start_time) {
-					echo "<span class=text-success>$MSG_Start&nbsp;</span>";
-					echo "<span class=text-success>$MSG_TotalTime</span>"." ".formatTimeLength($end_time-$start_time);
-				}
-				else {
-					echo "<span class=text-danger>$MSG_Running</span>&nbsp;";
-					echo "<span class=text-danger>$MSG_LeftTime</span>"." ".formatTimeLength($end_time-$now);
-				}
-				?>
-
-				<br><br>
-
-				<?php echo $MSG_CONTEST_STATUS?> : 
-				
-				<?php
-				if ($now>$end_time)
-					echo "<span class=text-muted>".$MSG_End."</span>";
-				else if ($now<$start_time)
-					echo "<span class=text-success>".$MSG_Start."</span>";
-				else
-					echo "<span class=text-danger>".$MSG_Running."</span>";
-				?>
-				&nbsp;&nbsp;
-
-				<?php echo $MSG_CONTEST_OPEN?> : 
-
-				<?php if ($view_private=='0')
-					echo "<span class=text-primary>".$MSG_Public."</span>";
-				else
-					echo "<span class=text-danger>".$MSG_Private."</span>";
-				?>
-
-				<br>
-
-				<?php echo $MSG_START_TIME?> : <?php echo $view_start_time?>
-				<br>
-				<?php echo $MSG_END_TIME?> : <?php echo $view_end_time?>
-				<br><br>
-
-				<div class="btn-group">
-					<a href="contest.php?cid=<?php echo $cid?>" class="btn btn-primary btn-sm"><?php echo $MSG_PROBLEMS?></a>
-					<a href="status.php?cid=<?php echo $view_cid?>" class="btn btn-primary btn-sm"><?php echo $MSG_SUBMIT?></a>
-					<a href="contestrank.php?cid=<?php echo $view_cid?>" class="btn btn-primary btn-sm"><?php echo $MSG_STANDING?></a>
-					<a href="contestrank-oi.php?cid=<?php echo $view_cid?>" class="btn btn-primary btn-sm"><?php echo "OI".$MSG_STANDING?></a>
-					<a href="conteststatistics.php?cid=<?php echo $view_cid?>" class="btn btn-primary btn-sm"><?php echo $MSG_STATISTICS?></a>
-          <a href="suspect_list.php?cid=<?php echo $view_cid?>" class="btn btn-warning btn-sm"><?php echo $MSG_IP_VERIFICATION?></a>
-        <?php if(isset($_SESSION[$OJ_NAME.'_'.'administrator']) || isset($_SESSION[$OJ_NAME.'_'.'contest_creator'])) {?>
-          <a href="user_set_ip.php?cid=<?php echo $view_cid?>" class="btn btn-success btn-sm"><?php echo $MSG_SET_LOGIN_IP?></a>
-          <a target="_blank" href="../../admin/contest_edit.php?cid=<?php echo $view_cid?>" class="btn btn-success btn-sm"><?php echo "EDIT"?></a>
-	        <?php } ?>
-				</div>
-			</div>
-			</center>
-			<?php }?>
-
-			<br>
 			<?php
 				$rank = 1;
 			?>
-			<center>
-				<a href="contestrank.xls.php?cid=<?php echo $cid?>" >Download</a>
-				<h4><?php if (isset($locked_msg)) echo $locked_msg;?></h4>
-				<?php
-				if ($OJ_MEMCACHE) {
-					if (isset($_SESSION[$OJ_NAME.'_'.'administrator'])) {
-						echo ' | <a href="contestrank3.php?cid='.$cid.'">滚榜</a>';
+            <div class="alert alert-info">
+                <a href="contestrank.xls.php?cid=<?php echo $cid?>">
+                    <i class="fas fa-file-download"></i>Download
+                </a>
+                <h4><?php if (isset($locked_msg)) echo $locked_msg;?></h4>
+                <?php
+                if ($OJ_MEMCACHE) {
+                    if (isset($_SESSION[$OJ_NAME.'_'.'administrator'])) {
+                        echo ' | <a href="contestrank3.php?cid='.$cid.'">滚榜</a>';
 
-						if($OJ_MEMCACHE)
-							echo '<a href="contestrank2.php?cid='.$cid.'">Replay</a>';
-					}
-				}
-				?>
-			</center>
+                        if($OJ_MEMCACHE)
+                            echo '<a href="contestrank2.php?cid='.$cid.'">Replay</a>';
+                    }
+                }
+                ?>
+            </div>
+
+
+
 			<div id="main" style="overflow: auto">
 			<?php if (isset($OJ_CONTEST_RANK_FIX_HEADER)&&$OJ_CONTEST_RANK_FIX_HEADER){?>
 			<div style="height: 100%; width: 300px; overflow: scroll; overflow:hidden;float:left" id="header">
@@ -249,9 +157,9 @@
 			</div>
  			<div style="height: 100%; width: 600px; overflow: scroll; position: static;" onscroll="syncScrolls()" id="data">
 			<?php } ?>
- 				   <div style="poxition: relative; top: 100px; width: 1800px; height: 100%; border: solid 1px green">
+ 				   <div class="table-responsive">
  
-				<table id=rank>
+				<table id=rank class="table">
 					<thead>
 						<tr class=toprow align=center>
 							<td class="{sorter:'false'}" width=5%><?php echo $MSG_STANDING?></td>

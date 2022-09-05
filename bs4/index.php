@@ -22,14 +22,14 @@ $cnt = 10;
 $sql="SELECT users.`user_id`,`nick`,s.`solved`,t.`submit` FROM `users`
                                         inner join
                                         (select count(distinct problem_id) solved ,user_id from solution 
-						where in_date>str_to_date('$s','%Y-%m-%d') and result=4 
+						where in_date>str_to_date('$s','%Y-%m-%d') and result=4 and user_id NOT IN('admin')
 						group by user_id order by solved desc limit 0, $cnt) s 
 					on users.user_id=s.user_id
                                         inner join
                                         (select count( problem_id) submit ,user_id from solution 
 						where in_date>str_to_date('$s','%Y-%m-%d') 
 						group by user_id order by submit desc ) t 
-					on users.user_id=t.user_id
+					on users.user_id=t.user_id                      
                                 ORDER BY s.`solved` DESC,t.submit,reg_time  LIMIT  0, $cnt
                          ";
 
@@ -44,7 +44,7 @@ $rank_rows = mysql_query_cache($sql);
             <div class="col-md-8 ">
                 <div class="card shadow border border-info m-2">
                     <div class="card-header h5 bg-info text-light">
-                        <a class="text-light" href="notice.php"><i class="fas fa-comment-dots"></i> 공지사항</a>
+                        <a class="text-light" href="notice.php"><i class="fas fa-comment-dots"></i>공지사항</a>
                     </div>
                     <div class="card-body">
                         <div class="accordion list-group list-group-flush" id="news_accordion">
@@ -175,12 +175,12 @@ $rank_rows = mysql_query_cache($sql);
                             </div>
                             Loading...
                         </canvas>
-                        <canvas id="memChart" >
+                      <!--  <canvas id="memChart" >
                             <div class="spinner-border text-success" role="status">
                                 <span class="sr-only">Loading...</span>
                             </div>
                             Loading...
-                        </canvas>
+                        </canvas>-->
                     </div>
                 </div>
 
@@ -229,15 +229,15 @@ $rank_rows = mysql_query_cache($sql);
             labels: labels,
             datasets: [{
                 label: '제출횟수',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgb(115, 2, 23)',
+                borderColor: 'rgb(115, 2, 23)',
                 data: d_all_data,
                 stack:'combined'
             },
             {
                 label: '성공',
-                backgroundColor: 'rgb(0, 210, 70)',
-                borderColor: 'rgb(0, 210, 70)',
+                backgroundColor: 'rgb( 2, 89, 32)',
+                borderColor: 'rgb( 2, 89, 32)',
                 data: d_ac_data,
 
                 type:'bar'
@@ -267,55 +267,60 @@ $rank_rows = mysql_query_cache($sql);
                     var mem = 100 - (d[1].usable_mem *1 )/ (d[1].total_mem * 1 ) * 100;
                     var mem_free = 100 - mem;
                     var data_cpu = {
-                        labels : ['CPU','used'],
+                        labels : [''/*,'used'*/],
                         datasets: [{
-                            data: [cpu_free, cpu],
+                            label:'CPU',
+                            data: [cpu_free],
                             backgroundColor: [
-                                'rgba(0, 199, 0, 1)',
-                                'rgba(255, 255, 255, 0.5)'
+                                'rgba(4, 119, 191, 1)'
                             ],
                             borderColor: [
-                                'rgb(0, 199, 0)',
-                                'rgb(0, 0, 0, 0.2)'
+                                'rgb(255, 255, 255)'
+                            ],
+                            borderWidth: 1,
+
+                        },{
+                            label:'MEM',
+                            data: [mem_free/*, cpu*/],
+                            backgroundColor: [
+                                'rgba(217, 89, 61, 1)'
+                            ],
+                            borderColor: [
+                                'rgb(255, 255, 255)'
                             ],
                             borderWidth: 1
                         }]
                     };
-                    var data_mem = {
-                        labels : ['MEM','used'],
-                        datasets: [{
-                            data: [mem_free, mem],
-                            backgroundColor: [
-                                'rgba(0, 89, 255, 1)',
-                                'rgba(255, 255, 255, 0.5)'
-                            ],
-                            borderColor: [
-                                'rgba(0, 89, 255, 1)',
-                                'rgba(0, 0, 0, 0.2)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    };
+
                     var cpu_config = {
-                        type:'pie',
+                        type:'bar',
                         data: data_cpu,
+                        scales:{
+                            x:{
+                                min: 0,
+                                max: 100
+                            }
+                        },
                         options: {
+                            indexAxis: 'y',
+                            title: {
+                                display: true,
+                                text: 'CPU free'
+                            },
+                            scales:{
+                                x:{
+                                    min: 0,
+                                    max: 100
+                                }
+                            }
                         },
                     };
-                    var mem_config = {
-                        type:'pie',
-                        data: data_mem,
-                        options: {
-                        },
-                    };
+
                     var cpuChart = new Chart(
                         document.getElementById('cpuChart'),
                         cpu_config
                     );
-                    var memChart = new Chart(
-                        document.getElementById('memChart'),
-                        mem_config
-                    );
+
                 }
             });
         });

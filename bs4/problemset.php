@@ -34,7 +34,7 @@
             </div>
             <div class="col-md-6 col-sm-12 mr-auto">
                 <div>
-                    <form method="get" action="<?=$_SEVER['PHP_SELF']?>" >
+                    <form method="get" action="<?=$_SERVER['PHP_SELF']?>" >
                         <div class="input-group">
                             <select name="search_type" class="col-4 form-control form-control-sm input-group-prepend">
                                 <option value="problem_id">문제번호</option>
@@ -120,7 +120,7 @@
 		    $( "#problemset" ).after( $( "#page" ).prop( "outerHTML" ) );
 		} );
         <?php
-            if(isset(($_GET['search_val']))){
+            if(($_GET['search_val']) !== null){
                 ?>
             $("option[value=<?=$_GET['search_type']?>]").prop("selected",true);
             $("input[name=search_val]").val("<?=$_GET['search_val']?>");

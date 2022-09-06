@@ -17,10 +17,8 @@ require_once('./include/setlang.php');
  * 사용에 대한 책임은 본이에게 있습니다.
  */
 
-$page = isset($_GET['page'])?$_GET['page']:1;
+$page = $_GET['page']  < 1 || !is_numeric($_GET['page']) ? 1 : $_GET['page'];
 $page_cnt = 20;
-
-
 
 $search_type = $_GET['search_type'];
 $search_val = $_GET['search_val'];
@@ -69,11 +67,6 @@ from
     $total_page = ceil($total_count / $page_cnt);
     $now = ($page-1) * $page_cnt;
 
-    //출력리스트
-    $result = mysql_query_cache($query);
-    $view_problemset = $result;
-    /////////////////////////////////////////
-
 
     //print list
     $query = "select {$query_list}  
@@ -91,12 +84,12 @@ order by p.problem_id asc limit $now, $page_cnt
     $result = mysql_query_cache($query);
     $view_problemset = $result;
 
-}else if(isset(($_SESSION[$OJ_NAME.'_'.'user_id']))){ //for user
+}else if(($_SESSION[$OJ_NAME . '_' . 'user_id']) !== null){ //for user
     //로그인 사용자 검색조건
     //사용중인 것만, 대회중인것은 제외
     //자신의 평가 데이터 출력
 
-    $search_query = isset(($search_query))?" and ".$search_query:"";
+    $search_query = ($search_query) !== null ?" and ".$search_query:"";
     $total_count_query = "select count(*) as cnt
 from
      (select problem_id, title, source, accepted, submit, solved 
@@ -155,7 +148,7 @@ order by p.problem_id asc limit $now, $page_cnt
 }else{
     //비로그인 사용자 검색조건
     //사용중인 것만, 대회중인것은 제외
-    $search_query = isset(($search_query))?" and ".$search_query:"";
+    $search_query = ($search_query) !== null ?" and ".$search_query:"";
     $total_count_query = "select count(*) as cnt
 from
      (select problem_id, title, source, accepted, submit, solved 

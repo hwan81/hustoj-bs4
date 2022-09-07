@@ -1,5 +1,5 @@
 <?php
-    require_once ("oj-header.php");
+    require("template/".$OJ_TEMPLATE."/oj-header.php");
     ?>
 <div class="container">
     <div class="h3">
